@@ -1,11 +1,18 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { ContainerButton } from "./styled"
 
-export default function HomePage(){
+export default function HomePage(){  
+
+    
+
+
     return(
-        <div>
+        <div>              
+
+              
+
         <Typography variant="h1" align={'center'} gutterBottom>HomePage</Typography>
         
         <ContainerButton>
