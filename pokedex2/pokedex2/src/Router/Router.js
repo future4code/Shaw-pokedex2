@@ -5,17 +5,11 @@ import HomePage from "../Pages/HomePage/HomePage";
 import Pokedex from "../Pages/Pokedex/Pokedex";
 import styled from "@emotion/styled";
 
-const GlobalContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 16px;
-`
 
 export default function Router(){
     return(
         <BrowserRouter>
-        <GlobalContainer>
+        
 
         <Routes>
 
@@ -23,13 +17,13 @@ export default function Router(){
 
             <Route path="/pokedex" element={<Pokedex/>} />
 
-            <Route path="/detail/page" element={<DetailPage/>} />
+            <Route path="/details/:id" element={<DetailPage/>} />
 
           
 
         </Routes>
 
-        </GlobalContainer>
+        
         </BrowserRouter>
     )
 }
