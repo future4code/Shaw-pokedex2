@@ -1,5 +1,5 @@
 import React from "react";
-import { GlobalState } from "./global/GlobalState";
+import { GlobalState } from "./Global/GlobalState";
 import Router from "./Router/Router";
 
 export default function App (){

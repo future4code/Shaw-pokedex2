@@ -4,7 +4,8 @@ import { goToDetailPage } from "../../Router/coordinator";
 import "./style.css"
 import pokeballImg from "../../img/pokeball.png"
 import more from "../../img/plus.png"
-import { PokedexContext } from "../../global/GlobalStateContext";
+import { PokedexContext } from "../../Global/GlobalStateContext";
+import { AddPokedex, RemovePokemon } from "../../functions/add&removePokemon";
 
 
     const PokemonThumb = ({id, name, image, type}) => {
@@ -25,12 +26,12 @@ import { PokedexContext } from "../../global/GlobalStateContext";
             <div className="buttons-card">
                 {(pokedexIdList.findIndex((pokemonId) => pokemonId === id)) === -1
                 ? (
-                    <button>
+                    <button onClick={()=> AddPokedex(id, pokedexIdList, setPokedexIdList) }>
                         <img src={pokeballImg} alt="Ícone de pokebola"/>
                         <>Adicionar Pokedex</>
                     </button>)
                 : (
-                    <button >
+                    <button onClick={()=> RemovePokemon(id, pokedexIdList, setPokedexIdList)}>
                         <img src={pokeballImg} alt="Ícone de pokebola"/>
                         <>Remover Pokedex</>
                     </button>)                
