@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import DetailPage from "../Pages/DetailPage/DetailPage";
 import HomePage from "../Pages/HomePage/HomePage";
 import Pokedex from "../Pages/Pokedex/Pokedex";
-import styled from "@emotion/styled";
+
 
 
 export default function Router(){
@@ -11,17 +11,17 @@ export default function Router(){
         <BrowserRouter>
         
 
-        <Routes>
+            <Routes>
 
-            <Route index element={<HomePage/>}  />
+                <Route index element={<HomePage/>}  />
 
-            <Route path="/pokedex" element={<Pokedex/>} />
+                <Route path="/pokedex" element={<Pokedex/>} />
 
-            <Route path="/details/:id" element={<DetailPage/>} />
+                <Route path="/details/:id" element={<DetailPage/>} />
 
-          
+            
 
-        </Routes>
+            </Routes>
 
         
         </BrowserRouter>
