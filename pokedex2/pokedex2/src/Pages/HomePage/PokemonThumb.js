@@ -25,12 +25,12 @@ import { PokedexContext } from "../../Global/GlobalStateContext";
             <div className="buttons-card">
                 {(pokedexIdList.findIndex((pokemonId) => pokemonId === id)) === -1
                 ? (
-                    <button>
+                    <button onClick={()=> AddPokedex(id, pokedexIdList, setPokedexIdList) }>
                         <img src={pokeballImg} alt="Ícone de pokebola"/>
                         <>Adicionar Pokedex</>
                     </button>)
                 : (
-                    <button >
+                    <button onClick={()=> RemovePokemon(id, pokedexIdList, setPokedexIdList)}>
                         <img src={pokeballImg} alt="Ícone de pokebola"/>
                         <>Remover Pokedex</>
                     </button>)                
