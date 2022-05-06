@@ -5,11 +5,24 @@ display: flex;
 justify-content: center;
 height: 100vh;
 align-items: center;
-margin-top: -200px;
+margin-top: -100px;
+
+.buttonPokedex {
+    width: 15px;
+    margin-left: 10px;
+}
+
+.buttonBack {
+    width: 15px;
+    margin-left: 10px;
+    
+}
 
 .button1 {
     margin-right: 300px;
     margin-bottom: 20px;
+    background-color: white;
+    border-radius: 5px;
     
     
 }
@@ -17,6 +30,8 @@ margin-top: -200px;
 .button2 {
     margin-left: 300px;
     margin-bottom: 20px;
+    background-color: white;
+    border-radius: 5px;
    
 
 }
