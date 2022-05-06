@@ -1,11 +1,12 @@
-// import React from "react";
-// import GlobalStateContext from "../Global/GlobalStateContext"
+import { useState } from "react";
+import { PokedexContext } from "./GlobalStateContext";
 
-
-// export default function Globalstate = (props) => {
-
-//    return(
-//        <div>
-//        </div>
-//    )
-// }
+export const GlobalState = (props) => {
+    const [pokedexIdList, setPokedexIdList] = useState([]);
+    return (
+        
+        <PokedexContext.Provider value={{pokedexIdList, setPokedexIdList}}>
+            {props.children}
+        </PokedexContext.Provider>
+    );
+};

@@ -1,90 +1,81 @@
-import { Button, Container, Typography } from "@mui/material";
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ConatinerImg, ContainerButton, ContainerPai, Header, Main } from "./styled"
-import { BASE_URL } from "../../constants/baseurl";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {BASE_URL} from "../../constants/baseurl"
+import PokemonThumb from "./PokemonThumb";
+import "./style.css"
+import {goToPokedexPage} from "../../Router/coordinator"
+import LogoPokemon from "../../img/logoPokemon.png"
 
-export default function HomePage(){
+export default function HomePage() {
 
-    const [pokeName, setPokeName] = useState([])
-    const [pokePhoto, setPokePhoto] = useState([])
-    const [url, setUrl] = useState("")
+  const [allPokemons, setAllPokemons] = useState([])
+  const [loadMore, setLoadMore] = useState(`${BASE_URL}?limit=20`)
 
+  const getAllPokemons = async () => {
+    const res = await fetch(loadMore)
+    const data = await res.json()
 
-    const getPokemon = () =>{
-        axios.get(`${BASE_URL}/pokemon/?offset=20&limit=20`)
-        .then((res)=>{
-            console.log(res.data.results.url)
-            setPokePhoto(res.data.sprites.versions['generation-v'] ['black-white'].animated.front_default)
-            setPokeName(res.data.results)
-            setUrl(res.data.results.url)
-            
-        })
-        .catch((err)=>{
-           
-        })
+    setLoadMore(data.next)
+    
+
+    
+
+    function createPokemonObject(result) {
+      let pokemonList = []
+      result.forEach(async (pokemon) => {
+        const res = await fetch(`${BASE_URL}/${pokemon.name}`)
+        const data = await res.json()
+        pokemonList.push(data) 
+
+      
+       setAllPokemons(pokemonList)
+      })
+      
+     
     }
+   
 
-    useEffect(()=>{
-        getPokemon()
-    },[])
+   
+    createPokemonObject(data.results)
+  }
+   allPokemons.length > 0 && console.log(allPokemons)
+  useEffect(() => { 
+  getAllPokemons() 
+  },[])
 
-
-    const arrayListPokemon = pokeName.map((list)=>{
-        return(
-            <p>{list.name}</p>
-            
-        )
-    })
   
-    return(
-        <div>
-        <ContainerPai>
+ console.log(loadMore)
+  
 
+  const navigate = useNavigate();
+  return (
+    <div className="app-container">
+      <div className="header" >
+        <button className="Button-header" onClick={() => goToPokedexPage(navigate)}>Pokedex</button>
+        <img className="logo" src={LogoPokemon}/>
+      </div>
+      
+      <div  className="pokemon-container">
 
-            
-            <Header>
-            <ContainerButton>
-              <Link to={'/pokedex'}>
-               <Button variant={'contained'} size="small">pokedex</Button> 
-               </Link>
-            </ContainerButton>    
-            
-            <ConatinerImg>
-               <h1>pokemon</h1>  
-            </ConatinerImg>
-            </Header>
-           
-           <Main>
-               <img src="https://assets.pokemon.com/assets/cms2/img/misc/countries/pt/country_detail_pokemon.png"/>
-           </Main>
-
-        </ContainerPai>
+        <div className="all-containers">
+         {allPokemons
+          .sort((currentPokemon, nextPokemon) => {
+            return currentPokemon.id - nextPokemon.id
+          })
+          .map((pokemon) =>
+            <PokemonThumb
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.sprites.other.dream_world.front_default}
+              type={pokemon.types[0].type.name}
+              // key={pokemon.id}
+            />
+          )}
         </div>
 
+        <button className="load-more" onClick={() => getAllPokemons()}>carregar Mais</button>
+      </div>
+    </div>
 
-//         <ContainerPai>
-            
-         
-//         <Typography variant="h1" gutterBottom> Pokemon</Typography>
-        
-//          <ContainerButton>
-// {/* 
-//         <Link to={'/detail/page'}>
-//         <Button variant={'outlined'} color={'secondary'}>Página de detalhes</Button>
-//          </Link>    */}
-        
-//              <img src={pokePhoto}  />
-//              {arrayListPokemon}
-       
-//             <Link to={'/pokedex'}>
-//             <Button variant={'contained'} color={'primary'}>Pokedex</Button>
-//              </Link>
-//             </ContainerButton> 
-         
-//         </ContainerPai>
-    )
+  )
 }
