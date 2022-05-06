@@ -4,10 +4,10 @@ import { goToDetailPage } from "../../Router/coordinator";
 import "./style.css"
 import pokeballImg from "../../img/pokeball.png"
 import more from "../../img/plus.png"
-import { PokedexContext } from "../../global/GlobalStateContext";
+import { PokedexContext } from "../../Global/GlobalStateContext";
 
 
-    const PokemonThumb = ({id, name, image, type}) => {
+    export const PokemonThumb = ({id, name, image, type}) => {
     const navigate = useNavigate();
     const {pokedexIdList, setPokedexIdList} = useContext(PokedexContext);
 
@@ -36,7 +36,7 @@ import { PokedexContext } from "../../global/GlobalStateContext";
                     </button>)                
                 }
                 
-                <button onClick={()=> navigate("/details/:id")}>
+                <button onClick={()=> navigate(`/details/${name}`)}>
                     <img className="more-icon" src={more} alt="Ícone de mais"/>
                     <p>Detalhes</p>
                 </button>

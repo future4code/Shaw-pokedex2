@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from "@mui/material";
 import { ContainerSon, Container, CardPhoto, ContainerAttacks, ContainerPowerPoke, ContainerTypePoke } from "./styled";
-import { BASE_URL } from '../../constants/baseurl';
-import { useNavigate } from 'react-router-dom';
+import pokeImg from '../../img/pokeball.png'
+import { useNavigate, useParams } from 'react-router-dom';
+import api from '../../constants/api';
 
 const DetailPage = () => {
 
@@ -11,20 +11,25 @@ const DetailPage = () => {
     const [typePoke, setTypePoke] = useState([])
     const [powerPoke, setPowerPoke] = useState([])
 
+    const params = useParams()
+    
+
     const navigate = useNavigate()
 
-    const getPokeDetail = async (name) => {
+    const getPokeDetail = async () => {
 
 
         try {
-            const response = await BASE_URL.get(`/${name}`);
+            const response = await api.get(`/${params.id}`);
             setPokeDetail(response.data.stats);
             setPokePhoto(response.data.sprites.other.dream_world.front_default)
             setTypePoke(response.data.types)
             setPowerPoke(response.data.moves)
-            console.log(response.data);
+            console.log(response.data)
+            
 
         } catch (error) {
+            console.log(error.response);
 
         }
     };
@@ -64,8 +69,12 @@ const DetailPage = () => {
             <ContainerSon>
 
 
-                <Button onClick={() => navigate(-1)} className="button1" variant="outlined"><strong>Voltar</strong></Button>
-                <Button onClick={() => navigate('/pokedex')} className="button2" variant="outlined"><strong>Pokedex</strong></Button>
+                <button onClick={() => navigate(-1)} className="button1"><strong>Voltar</strong>
+                <img className='buttonBack' src='https://cdn-icons-png.flaticon.com/512/61/61449.png'/>
+                 </button>
+                <button onClick={() => navigate('/pokedex')} className="button2"><strong>Pokedex</strong>
+                <img className='buttonPokedex' src={pokeImg}/>
+                </button>
 
 
                 <CardPhoto>
