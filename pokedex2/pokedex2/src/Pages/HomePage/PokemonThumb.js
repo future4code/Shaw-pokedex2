@@ -5,6 +5,7 @@ import "./style.css"
 import pokeballImg from "../../img/pokeball.png"
 import more from "../../img/plus.png"
 import { PokedexContext } from "../../Global/GlobalStateContext";
+import RemovePokemon from "../../functions/AddERemovePokemon";
 
 
     export const PokemonThumb = ({id, name, image, type}) => {

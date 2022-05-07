@@ -1,5 +1,6 @@
 // logica das funções de add e remover
 
+
 export const AddPokedex = (id, pokedexIdList, setPokedexIdList) =>{
 const AddNewId = [...pokedexIdList, id]
 setPokedexIdList(AddNewId)
@@ -13,3 +14,6 @@ const RemovePokemon = CopyPokemon.filter((PokemonId)=>{
  })
  setPokedexIdList(RemovePokemon)
  }
+
+export default RemovePokemon
+
