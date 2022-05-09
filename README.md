@@ -1,16 +1,17 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Stella Neves de Castro
+- Yasmin Silva da conceição
+- Pablo Andrade
 
-Link do Surge: www.link.com.br
+Link do Surge: enchanted-weather.surge.sh
 
 O que funciona:
-- Item 1
-- Item 2
+- Vizualização de 20 pokemons 
+- Detalhes de cada pokemon
 
 O que não funciona: 
-- Item 3
-- Item 4
+- Botão de adcionar a pokedex 
+- Botão de remover da pokedex
+- Botão de reload novos pokemons
