@@ -5,7 +5,7 @@ Nome dos integrantes:
 - Yasmin Silva da conceição
 - Pablo Andrade
 
-Link do Surge: enchanted-weather.surge.sh
+https://cut-organization.surge.sh/
 
 O que funciona:
 - Vizualização de 20 pokemons 
